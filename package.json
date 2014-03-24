@@ -1,23 +1,29 @@
 {
-  "name": "grunt-contrib-connect",
-  "description": "Start a connect web server.",
+  "name": "grunt-connect-socket.io",
+  "description": "Start a connect web server with Socket.io support, based on grunt-contrib-connect",
   "version": "0.7.1",
-  "homepage": "https://github.com/gruntjs/grunt-contrib-connect",
-  "author": {
-    "name": "Grunt Team",
-    "url": "http://gruntjs.com/"
-  },
+  "homepage": "https://github.com/fardog/grunt-connect-socket.io",
+  "author": [
+    {
+      "name": "Grunt Team",
+      "url": "http://gruntjs.com/"
+    },
+    {
+      "name": "Nathan Wittstock <code@fardogllc.com>",
+      "url": "http://fardogllc.com/"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/gruntjs/grunt-contrib-connect.git"
+    "url": "git://github.com/fardog/grunt-connect-socket.io"
   },
   "bugs": {
-    "url": "https://github.com/gruntjs/grunt-contrib-connect/issues"
+    "url": "https://github.com/fardog/grunt-connect-socket.io/issues"
   },
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/gruntjs/grunt-contrib-connect/blob/master/LICENSE-MIT"
+      "url": "https://github.com/fardog/grunt-connect-socket.io/blob/master/LICENSE-MIT"
     }
   ],
   "engines": {
@@ -31,14 +37,16 @@
     "connect-livereload": "~0.3.0",
     "open": "0.0.4",
     "portscanner": "0.2.2",
-    "async": "~0.2.10"
+    "async": "~0.2.10",
+    "socket.io": "^0.9.16"
   },
   "devDependencies": {
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-nodeunit": "~0.2.0",
     "grunt-contrib-internal": "~0.4.6",
     "grunt": "~0.4.0",
-    "grunt-cli": "~0.1.13"
+    "grunt-cli": "~0.1.13",
+		"socket.io-client": "^0.9.16"
   },
   "peerDependencies": {
     "grunt": "~0.4.0"
@@ -47,7 +55,8 @@
     "gruntplugin",
     "server",
     "connect",
-    "http"
+    "http",
+    "socket.io"
   ],
   "files": [
     "tasks",
