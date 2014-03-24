@@ -1,4 +1,8 @@
 /*
+ * grunt-connect-socket.io
+ * http://github.com/fardog/grunt-connect-socket.io
+ *
+ * Based on:
  * grunt-contrib-connect
  * http://gruntjs.com/
  *
@@ -17,6 +21,7 @@ module.exports = function(grunt) {
   var open = require('open');
   var portscanner = require('portscanner');
   var async = require('async');
+	var io = require('socket.io');
 
   var MAX_PORTS = 30; // Maximum available ports to check after the specified port
 
@@ -136,6 +141,14 @@ module.exports = function(grunt) {
         } else {
           server = http.createServer(app);
         }
+
+				// only load socket.io if a config is set, then emit an event with the io object
+				if (typeof options.socketio !== 'undefined' && options.socketio) {
+					var socketio = io.listen(server);
+					grunt.log.writeln('Bound Socket.io to connect server.');
+					grunt.config.set('connect.' + taskTarget + '.socketio', socketio);
+					grunt.event.emit('connect.' + taskTarget + '.socketio.listening', io);
+				}
 
         portscanner.findAPortNotInUse(options.port, options.port + MAX_PORTS, options.hostname, function(error, foundPort) {
           // if the found port doesn't match the option port, and we are forced to use the option port

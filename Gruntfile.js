@@ -144,7 +144,21 @@ module.exports = function(grunt) {
           hostname: '*',
           base: 'test/'
         }
-      }
+      },
+			use_socket_io: {
+				options: {
+					port: 8013,
+					hostname: '*',
+					socketio: true
+				}
+			},
+			socket_io_event: {
+				options: {
+					port: 8014,
+					hostname: '*',
+					socketio: true
+				}
+			}
     },
   });
 
