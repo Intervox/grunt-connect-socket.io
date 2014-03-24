@@ -251,4 +251,39 @@ exports.connect = {
       });
     });
   },
+	use_socket_io: function(test) {
+		var config = grunt.config.data.connect.use_socket_io;
+		var socketio = config.socketio;
+
+		test.expect(1);
+
+		socketio.sockets.on('connection', function(socket) {
+			test.ok(socket, 'should get a connection');
+			test.done();
+		});
+
+		var client = require('socket.io-client');
+		client.connect('http://localhost:' + config.options.port);
+	},
+	socket_io_event: function(test) {
+		var config = grunt.config.data.connect.socket_io_event;
+		var socketio = config.socketio;
+
+		test.expect(2);
+
+		socketio.sockets.on('connection', function(socket) {
+			test.ok(socket, 'should get a connection');
+			socket.emit('test', {test: true});
+		});
+
+		var client = require('socket.io-client');
+		var socket = client.connect('http://localhost:' + config.options.port);
+
+		socket.on('connect', function() {
+			socket.on('test', function(data) {
+				test.ok(data.test, 'should get data with the event');
+				test.done();
+			});
+		});
+	}
 };
